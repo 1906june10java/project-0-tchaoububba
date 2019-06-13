@@ -1,6 +1,6 @@
 # Banking Project
 
-## Presentations (Monday ~ Wednesday of Week 3)
+## Presentations (Wednesday of Week 3)
 * Presentations will start when QC team joins.
 
 ## Create a bank that users can interact with
