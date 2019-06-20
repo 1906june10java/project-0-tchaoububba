@@ -1,16 +1,28 @@
 package com.revature.controller;
 
+import java.util.Scanner;
+
 public class Controller {
 	
-	//Have Controller ask for login when instantiated.
+	//Have every class check for loginStatus.
+	
 	public Controller() {
-		System.out.println("Please enter your username and password.");
-		//Scanner for username and password???????
+		System.out.println("What would you like to do?");
 	}
 	
-	public void login(String username, String password) {
+	//Scanner for username and password (and everything)
+	Scanner scanner = new Scanner(System.in);
+	String username, password;
+	boolean loginStatus = false;
+	
+	public void login() {
+		System.out.println("Please enter your username and password.");
 		//Code to log in here
+		username = scanner.next();
+		password = scanner.next();
+		//I'm going to move the above variables into a Service class.
 		//Look into checking if user is already logged in
+		//TODO Insert scanned username + password into ConnectionDriver info.
 		//Print "Welcome "username"
 		//WrongUsernameOrPasswordException?
 	}
