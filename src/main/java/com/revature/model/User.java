@@ -1,8 +1,7 @@
 package com.revature.model;
 
-public class User /*possibly use constructor with username?*/{
+public class User {
 	
-	//look into access modifier
 	private String username;
 	
 	public String getUsername() {
@@ -21,6 +20,16 @@ public class User /*possibly use constructor with username?*/{
 
 	public void setBalance(double balance) {
 		this.balance = balance;
+	}
+	
+	private boolean loginStatus = false;
+
+	public boolean isLoginStatus() {
+		return loginStatus;
+	}
+
+	public void setLoginStatus(boolean loginStatus) {
+		this.loginStatus = loginStatus;
 	}
 
 }

@@ -36,7 +36,7 @@ public class ConnectionUtil {
 	public static void main(String[] args) {
 		Scanner scanner = new Scanner(System.in);
 		try {
-			getConnection(scanner.next(), scanner.next());
+			getConnection(scanner.nextLine(), scanner.nextLine());
 			LOGGER.info("Connection succesful");
 		} catch (SQLException e) {
 			LOGGER.error("Could not connect", e);

@@ -2,52 +2,66 @@ package com.revature.controller;
 
 import java.util.Scanner;
 
+import com.revature.model.User;
+import com.revature.service.ControllerService;
+
 public class Controller {
 	
-	//Have every class check for loginStatus.
+//	Have every class check for loginStatus.
 	
 	public Controller() {
-		System.out.println("What would you like to do?");
-	}
-	
-	//Scanner for username and password (and everything)
-	Scanner scanner = new Scanner(System.in);
-	String username, password;
-	boolean loginStatus = false;
-	
-	public void login() {
-		System.out.println("Please enter your username and password.");
-		//Code to log in here
-		username = scanner.next();
-		password = scanner.next();
-		//I'm going to move the above variables into a Service class.
-		//Look into checking if user is already logged in
-		//TODO Insert scanned username + password into ConnectionDriver info.
-		//Print "Welcome "username"
-		//WrongUsernameOrPasswordException?
-	}
-	
-	public void logout() {
-		//Code to log out here
-		//Should always log out, regardless of whether user is logged in or out
-		//Print success
-	}
-	
-	public void viewBalance() {
-		//Code to print out the balance here
-	}
-	
-	//Look for a way to check the money for no more than 2 decimal places and (also for positive money if we have time).  Throw IllegalArgumentException if that happens.
-	public void withdrawMoney(double money) {
-		//Code to check if balance > money (BalanceTooSmallException maybe will be a new IllegalArgumentException?)
-		//Decrease the balance by money amount
-		//Print out a success statement (maybe use viewBalance method)
-	}
-	
-	public void depositMoney (double money) {
-		//Code to increase balance by money amount
-		//(IllegalArgumentException for negative money, if we have time)
-		//Print out a success statement (maybe use viewBalance method)
-	}
+		
+		User user = new User();
+//		Scanner for username and password (and everything)
+		Scanner scanner = new Scanner(System.in);
+//		boolean loginStatus = false;
 
+		boolean infiniteLoop = true;		
+		while (infiniteLoop == true) {
+			
+			System.out.println("What would you like to do? You may login, logout, view your balance, deposit money, or withdraw money."
+					+ "\nEnter 'LOGIN', 'LOGOUT', 'VIEW', 'DEPOSIT', 'WITHDRAW', or 'EXIT' (without the quotes).");
+			
+			String userAction = scanner.nextLine();
+//			Handles when null or "" is passed
+			if (userAction == null || userAction.length() == 0) {
+				try {
+					throw new IllegalArgumentException();
+				} catch (IllegalArgumentException e) {
+					System.out.println("Expected an action request");
+				}
+			}
+			
+			String normalizedUserAction = userAction.toLowerCase();
+			ControllerService service = ControllerService.getInstance();
+			
+			switch(normalizedUserAction) {
+			case "login":
+				service.login(user, scanner);
+				break;
+			case "exit":
+				infiniteLoop = false;
+			case "logout":
+				service.logout(user);
+				break;
+			case "view":
+				service.viewBalance();
+				break;
+			case "deposit":
+				service.depositMoney();;
+				break;
+			case "withdraw":
+				service.withdrawMoney();
+				break;
+			default:
+				try {
+					throw new IllegalArgumentException();
+				} catch (IllegalArgumentException e) {
+					System.out.println("Not a valid action request");
+				}
+			}
+		}
+		System.out.println("Exiting program");
+		scanner.close();
+	}
 }
