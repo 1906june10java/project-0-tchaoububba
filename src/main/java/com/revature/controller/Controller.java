@@ -45,13 +45,13 @@ public class Controller {
 				service.logout(user);
 				break;
 			case "view":
-				service.viewBalance();
+				service.viewBalance(user);
 				break;
 			case "deposit":
-				service.depositMoney();;
+				service.depositMoney(user, scanner);;
 				break;
 			case "withdraw":
-				service.withdrawMoney();
+				service.withdrawMoney(user, scanner);
 				break;
 			default:
 				try {

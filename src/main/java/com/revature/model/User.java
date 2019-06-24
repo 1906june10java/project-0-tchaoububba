@@ -12,6 +12,16 @@ public class User {
 		this.username = username;
 	}
 	
+	private String password;
+	
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
 	private double balance;
 
 	public double getBalance() {
