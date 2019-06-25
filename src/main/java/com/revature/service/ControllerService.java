@@ -21,7 +21,7 @@ public final class ControllerService {
 	private static ControllerService instance;
 
 	private ControllerService() {
-		System.out.println("Instantiation has been restricted.  REMOVE THIS LINE BEFORE FINALIZATION!");
+		LOGGER.trace("Instantiation has been restricted.  REMOVE THIS LINE BEFORE FINALIZATION!");
 	}
 
 	public static ControllerService getInstance() {
@@ -113,14 +113,15 @@ public final class ControllerService {
 				System.out.println("A valid number was not received. Please enter your deposit amount as a number.");
 			}
 			if (depositAmount >= 0) {
+				LOGGER.trace("Entering deposit method with parameters: balance = " + user.getBalance() + ", deposit = " + depositAmount);
 				user.setBalance((user.getBalance() + depositAmount));
-
+				LOGGER.trace("Getting connection with user parameters: " + user.getUsername() + ", " + user.getPassword());
 				try (Connection connection = ConnectionUtil.getConnection(user.getUsername(), user.getPassword())) {
 					// * could be "AS [DESIRED_NAME]
 					String sql = "UPDATE bank_account SET BALANCE = ?";
 
 					PreparedStatement statement = connection.prepareStatement(sql);
-					System.out.println("REMOVE BEFORE FINALIZATION! Amount to be updated to: " + user.getBalance());
+					LOGGER.info("REMOVE BEFORE FINALIZATION! Amount to be updated to: " + user.getBalance());
 					statement.setDouble(1, user.getBalance());
 					statement.executeUpdate();
 
@@ -132,12 +133,14 @@ public final class ControllerService {
 
 				System.out.println("You have deposited $" + depositAmount + ".");
 				viewBalance(user);
+				scanner.nextLine();
 			} else {
 				depositAmount = 0;
 				try {
 					throw new IllegalArgumentException();
 				} catch (IllegalArgumentException e) {
 					System.out.println("A valid number was not received.  You must enter a positive amount to deposit.");
+					scanner.nextLine();
 				}
 			}
 		} else {
@@ -158,13 +161,15 @@ public final class ControllerService {
 				System.out.println("A valid number was not received. Please enter your deposit amount as a number.");
 			}
 			if (withdrawAmount >= 0 && withdrawAmount <= user.getBalance()) {
+				LOGGER.trace("Entering withdraw method with parameters: balance = " + user.getBalance() + ", withdraw = " + withdrawAmount);
 				user.setBalance((user.getBalance() - withdrawAmount));
-
+				LOGGER.trace("Getting connection with user parameters: " + user.getUsername() + ", " + user.getPassword());
 				try (Connection connection = ConnectionUtil.getConnection(user.getUsername(), user.getPassword())) {
 					// * could be "AS [DESIRED_NAME]
 					String sql = "UPDATE bank_account SET BALANCE = ?";
 
 					PreparedStatement statement = connection.prepareStatement(sql);
+					LOGGER.info("REMOVE BEFORE FINALIZATION! Amount to be updated to: " + user.getBalance());
 					statement.setDouble(1, user.getBalance());
 					statement.executeUpdate();
 
@@ -176,12 +181,14 @@ public final class ControllerService {
 
 				System.out.println("You have withdrawn $" + withdrawAmount + ".");
 				viewBalance(user);
+				scanner.nextLine();
 			} else if (withdrawAmount < 0) {
 				withdrawAmount = 0;
 				try {
 					throw new IllegalArgumentException();
 				} catch (IllegalArgumentException e) {
 					System.out.println("A valid number was not received.  You must enter a positive amount to withdraw.");
+					scanner.nextLine();
 				}
 			} else {
 				withdrawAmount = 0;
@@ -189,10 +196,13 @@ public final class ControllerService {
 					throw new BalanceTooSmallException();
 				} catch (BalanceTooSmallException e) {
 					System.out.println("You cannot withdraw an amount larger than your available balance.");
+					scanner.nextLine();
 				}
 			}
 		} else {
 			System.out.println("You are not logged in. You must login before you may view or update your balance.");
 		}
 	}
+	
+	//regi
 }

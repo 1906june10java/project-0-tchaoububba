@@ -19,8 +19,8 @@ public class Controller {
 		boolean infiniteLoop = true;		
 		while (infiniteLoop == true) {
 			
-			System.out.println("What would you like to do? You may login, logout, view your balance, deposit money, or withdraw money."
-					+ "\nEnter 'LOGIN', 'LOGOUT', 'VIEW', 'DEPOSIT', 'WITHDRAW', or 'EXIT' (without the quotes).");
+			System.out.println("What would you like to do? You may register, login, logout, view your balance, deposit money, or withdraw money.");
+			System.out.println("Enter 'REGISTER', 'LOGIN', 'LOGOUT', 'VIEW', 'DEPOSIT', 'WITHDRAW', or 'EXIT' (without the quotes).");
 			
 			String userAction = scanner.nextLine();
 //			Handles when null or "" is passed
@@ -53,6 +53,9 @@ public class Controller {
 			case "withdraw":
 				service.withdrawMoney(user, scanner);
 				break;
+//			case "register":
+//				//
+//				break;
 			default:
 				try {
 					throw new IllegalArgumentException();
