@@ -33,6 +33,15 @@ public class ConnectionUtil {
 		
 	}
 	
+	public static Connection getConnection() throws SQLException {
+		String url = "jdbc:oracle:thin:@mydbinstance.ceamzblcgdau.us-east-1.rds.amazonaws.com:1521:ORCL";
+		String username = "tchaoububba";
+		String password = "St042192";
+		
+		return DriverManager.getConnection(url, username, password);
+		
+	}
+	
 	public static void main(String[] args) {
 		Scanner scanner = new Scanner(System.in);
 		try {

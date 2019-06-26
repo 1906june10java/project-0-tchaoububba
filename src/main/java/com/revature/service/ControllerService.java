@@ -204,5 +204,60 @@ public final class ControllerService {
 		}
 	}
 	
-	//regi
+	public void register(Scanner scanner) {
+		LOGGER.trace("Entering register method");
+		String username;
+		String password, passwordCheck;
+		System.out.println("Please enter your desired username.");
+		username = scanner.nextLine();
+		if (username.length() <= 10) {
+			System.out.println("Please enter your desired password.");
+			password = scanner.nextLine();
+			System.out.println("Please re-enter your desired password.");
+			passwordCheck = scanner.nextLine();
+			if (password.equals(passwordCheck)) {
+				LOGGER.trace("Getting connection with admin parameters");
+				try (Connection connection = ConnectionUtil.getConnection()) {
+					// * could be "AS [DESIRED_NAME]
+					
+					String sql = "CREATE USER " + username + " IDENTIFIED BY " + password;
+					PreparedStatement statement = connection.prepareStatement(sql);
+					LOGGER.info("Creating user account with parameters: " + username + ", " + password);
+//					statement.setString(1, username);
+//					statement.setString(2, password);
+					statement.executeUpdate();
+//					Granting admin options
+					String sql2 = "GRANT DBA TO " + username + " WITH ADMIN OPTION";
+					PreparedStatement statement2 = connection.prepareStatement(sql2);
+					LOGGER.info("Granting admin options to created account (for purpose of testing)");
+//					statement2.setString(1, username);
+					statement2.executeUpdate();
+
+				} catch (SQLException e) {
+					LOGGER.error("Could not create user account.", e);
+					System.out.println("There was an error in registering your account.");
+					return;
+				}
+				System.out.println("Account created!");
+				try (Connection connection = ConnectionUtil.getConnection(username, password)){
+//					Creating Bank Account Table
+					String sql3 = "CREATE TABLE BANK_ACCOUNT (BALANCE NUMBER)";
+					PreparedStatement statement3 = connection.prepareStatement(sql3);
+					LOGGER.info("Creating test bank account table");
+					statement3.executeUpdate();
+					String sql4 = "INSERT INTO bank_account VALUES(0)";
+					PreparedStatement statement4 = connection.prepareStatement(sql4);
+					statement4.executeUpdate();
+				} catch (SQLException e) {
+					LOGGER.error("Could not log into user account.", e);
+					System.out.println("There was an error in logging into your registered account.");
+					return;
+				}
+			} else {
+				System.out.println("Please ensure your re-entered password matches exactly what you typed in the first time.");
+			}
+		} else {
+			System.out.println("Please restrict your username to 10 alphanumeric characters.");
+		}
+	}
 }

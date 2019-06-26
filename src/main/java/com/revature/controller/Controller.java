@@ -53,9 +53,10 @@ public class Controller {
 			case "withdraw":
 				service.withdrawMoney(user, scanner);
 				break;
-//			case "register":
-//				//
-//				break;
+			case "register":
+				service.logout(user);
+				service.register(scanner);
+				break;
 			default:
 				try {
 					throw new IllegalArgumentException();

@@ -561,3 +561,85 @@ java.sql.SQLException: ORA-01017: invalid username/password; logon denied
 2019-06-25 14:13:25 TRACE ControllerService:164 - Entering withdraw method with parameters: balance = 50.0, withdraw = 0.0
 2019-06-25 14:13:25 TRACE ControllerService:166 - Getting connection with user parameters: TEST_USER, p4ssw0rd
 2019-06-25 14:13:25 INFO  ControllerService:172 - REMOVE BEFORE FINALIZATION! Amount to be updated to: 50.0
+2019-06-25 17:25:22 TRACE ControllerService:24 - Instantiation has been restricted.  REMOVE THIS LINE BEFORE FINALIZATION!
+2019-06-25 17:25:22 TRACE ControllerService:208 - Entering register method
+2019-06-25 17:25:55 TRACE ControllerService:208 - Entering register method
+2019-06-25 17:26:45 TRACE ControllerService:208 - Entering register method
+2019-06-25 17:27:21 TRACE ControllerService:219 - Getting connection with admin parameters
+2019-06-25 17:27:21 INFO  ControllerService:230 - Creating user account with parameters: TEST_USER2, password
+2019-06-25 17:27:21 ERROR ControllerService:247 - Could not create user account.
+java.sql.SQLSyntaxErrorException: ORA-01935: missing user or role name
+
+	at oracle.jdbc.driver.T4CTTIoer.processError(T4CTTIoer.java:450)
+	at oracle.jdbc.driver.T4CTTIoer.processError(T4CTTIoer.java:399)
+	at oracle.jdbc.driver.T4C8Oall.processError(T4C8Oall.java:1017)
+	at oracle.jdbc.driver.T4CTTIfun.receive(T4CTTIfun.java:655)
+	at oracle.jdbc.driver.T4CTTIfun.doRPC(T4CTTIfun.java:249)
+	at oracle.jdbc.driver.T4C8Oall.doOALL(T4C8Oall.java:566)
+	at oracle.jdbc.driver.T4CPreparedStatement.doOall8(T4CPreparedStatement.java:215)
+	at oracle.jdbc.driver.T4CPreparedStatement.doOall8(T4CPreparedStatement.java:58)
+	at oracle.jdbc.driver.T4CPreparedStatement.executeForRows(T4CPreparedStatement.java:943)
+	at oracle.jdbc.driver.OracleStatement.doExecuteWithTimeout(OracleStatement.java:1075)
+	at oracle.jdbc.driver.OraclePreparedStatement.executeInternal(OraclePreparedStatement.java:3820)
+	at oracle.jdbc.driver.OraclePreparedStatement.executeUpdate(OraclePreparedStatement.java:3897)
+	at oracle.jdbc.driver.OraclePreparedStatementWrapper.executeUpdate(OraclePreparedStatementWrapper.java:1361)
+	at com.revature.service.ControllerService.register(ControllerService.java:233)
+	at com.revature.controller.Controller.<init>(Controller.java:57)
+	at com.revature.Main.main(Main.java:17)
+2019-06-25 17:32:44 TRACE ControllerService:24 - Instantiation has been restricted.  REMOVE THIS LINE BEFORE FINALIZATION!
+2019-06-25 17:32:44 TRACE ControllerService:208 - Entering register method
+2019-06-25 17:33:03 TRACE ControllerService:219 - Getting connection with admin parameters
+2019-06-25 17:33:03 INFO  ControllerService:230 - Creating user account with parameters: TEST_USER2, password
+2019-06-25 17:33:03 ERROR ControllerService:247 - Could not create user account.
+java.sql.SQLSyntaxErrorException: ORA-01935: missing user or role name
+
+	at oracle.jdbc.driver.T4CTTIoer.processError(T4CTTIoer.java:450)
+	at oracle.jdbc.driver.T4CTTIoer.processError(T4CTTIoer.java:399)
+	at oracle.jdbc.driver.T4C8Oall.processError(T4C8Oall.java:1017)
+	at oracle.jdbc.driver.T4CTTIfun.receive(T4CTTIfun.java:655)
+	at oracle.jdbc.driver.T4CTTIfun.doRPC(T4CTTIfun.java:249)
+	at oracle.jdbc.driver.T4C8Oall.doOALL(T4C8Oall.java:566)
+	at oracle.jdbc.driver.T4CPreparedStatement.doOall8(T4CPreparedStatement.java:215)
+	at oracle.jdbc.driver.T4CPreparedStatement.doOall8(T4CPreparedStatement.java:58)
+	at oracle.jdbc.driver.T4CPreparedStatement.executeForRows(T4CPreparedStatement.java:943)
+	at oracle.jdbc.driver.OracleStatement.doExecuteWithTimeout(OracleStatement.java:1075)
+	at oracle.jdbc.driver.OraclePreparedStatement.executeInternal(OraclePreparedStatement.java:3820)
+	at oracle.jdbc.driver.OraclePreparedStatement.executeUpdate(OraclePreparedStatement.java:3897)
+	at oracle.jdbc.driver.OraclePreparedStatementWrapper.executeUpdate(OraclePreparedStatementWrapper.java:1361)
+	at com.revature.service.ControllerService.register(ControllerService.java:233)
+	at com.revature.controller.Controller.<init>(Controller.java:57)
+	at com.revature.Main.main(Main.java:17)
+2019-06-25 17:35:32 TRACE ControllerService:24 - Instantiation has been restricted.  REMOVE THIS LINE BEFORE FINALIZATION!
+2019-06-25 17:35:32 TRACE ControllerService:208 - Entering register method
+2019-06-25 17:36:58 TRACE ControllerService:219 - Getting connection with admin parameters
+2019-06-25 17:37:33 INFO  ControllerService:230 - Creating user account with parameters: TEST_USER2, password
+2019-06-26 06:04:36 TRACE ControllerService:24 - Instantiation has been restricted.  REMOVE THIS LINE BEFORE FINALIZATION!
+2019-06-26 06:04:36 TRACE ControllerService:208 - Entering register method
+2019-06-26 06:04:49 TRACE ControllerService:219 - Getting connection with admin parameters
+2019-06-26 06:04:51 INFO  ControllerService:245 - Creating user account with parameters: TEST_USER2, password
+2019-06-26 06:04:51 INFO  ControllerService:252 - Granting admin options to created account (for purpose of testing)
+2019-06-26 06:04:52 INFO  ControllerService:265 - Creating test bank account table
+2019-06-26 06:09:09 TRACE ControllerService:48 - Entering login method with parameters: TEST_USER, p4ssw0rd
+2019-06-26 06:09:36 TRACE ControllerService:116 - Entering deposit method with parameters: balance = 50.0, deposit = 50.0
+2019-06-26 06:09:36 TRACE ControllerService:118 - Getting connection with user parameters: TEST_USER, p4ssw0rd
+2019-06-26 06:09:36 INFO  ControllerService:124 - REMOVE BEFORE FINALIZATION! Amount to be updated to: 100.0
+2019-06-26 06:11:35 TRACE ControllerService:48 - Entering login method with parameters: TEST_USER2, password
+2019-06-26 06:21:05 TRACE ControllerService:24 - Instantiation has been restricted.  REMOVE THIS LINE BEFORE FINALIZATION!
+2019-06-26 06:21:17 TRACE ControllerService:48 - Entering login method with parameters: TEST_USER, p4ssw0rd
+2019-06-26 06:21:30 TRACE ControllerService:208 - Entering register method
+2019-06-26 06:21:42 TRACE ControllerService:219 - Getting connection with admin parameters
+2019-06-26 06:21:42 INFO  ControllerService:225 - Creating user account with parameters: TEST_USER2, password
+2019-06-26 06:21:44 INFO  ControllerService:232 - Granting admin options to created account (for purpose of testing)
+2019-06-26 06:21:45 INFO  ControllerService:246 - Creating test bank account table
+2019-06-26 06:22:27 TRACE ControllerService:48 - Entering login method with parameters: TEST_USER2, password
+2019-06-26 06:28:34 TRACE ControllerService:24 - Instantiation has been restricted.  REMOVE THIS LINE BEFORE FINALIZATION!
+2019-06-26 06:28:56 TRACE ControllerService:48 - Entering login method with parameters: TEST_USER, p4ssw0rd
+2019-06-26 06:30:09 TRACE ControllerService:208 - Entering register method
+2019-06-26 06:31:17 TRACE ControllerService:219 - Getting connection with admin parameters
+2019-06-26 06:31:18 INFO  ControllerService:225 - Creating user account with parameters: TEST_USER2, password
+2019-06-26 06:31:21 INFO  ControllerService:232 - Granting admin options to created account (for purpose of testing)
+2019-06-26 06:31:22 INFO  ControllerService:246 - Creating test bank account table
+2019-06-26 06:32:06 TRACE ControllerService:48 - Entering login method with parameters: TEST_USER2, password
+2019-06-26 06:32:26 TRACE ControllerService:116 - Entering deposit method with parameters: balance = 0.0, deposit = 15.0
+2019-06-26 06:32:26 TRACE ControllerService:118 - Getting connection with user parameters: TEST_USER2, password
+2019-06-26 06:32:26 INFO  ControllerService:124 - REMOVE BEFORE FINALIZATION! Amount to be updated to: 15.0
