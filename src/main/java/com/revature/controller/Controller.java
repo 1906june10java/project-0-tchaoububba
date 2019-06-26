@@ -14,7 +14,6 @@ public class Controller {
 		User user = new User();
 //		Scanner for username and password (and everything)
 		Scanner scanner = new Scanner(System.in);
-//		boolean loginStatus = false;
 
 		boolean infiniteLoop = true;		
 		while (infiniteLoop == true) {

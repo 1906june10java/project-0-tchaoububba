@@ -21,7 +21,7 @@ public final class ControllerService {
 	private static ControllerService instance;
 
 	private ControllerService() {
-		LOGGER.trace("Instantiation has been restricted.  REMOVE THIS LINE BEFORE FINALIZATION!");
+		LOGGER.trace("Instantiation of ControllerService has been restricted.");
 	}
 
 	public static ControllerService getInstance() {
@@ -80,8 +80,8 @@ public final class ControllerService {
 	public void viewBalance(User user) {
 //		Code to print out the balance here
 		if (user.isLoginStatus()) {
+			LOGGER.trace("Getting connection with user parameters: " + user.getUsername() + ", " + user.getPassword());
 			try (Connection connection = ConnectionUtil.getConnection(user.getUsername(), user.getPassword())) {
-				// * could be "AS [DESIRED_NAME]
 				String sql = "SELECT * FROM BANK_ACCOUNT";
 
 				PreparedStatement statement = connection.prepareStatement(sql);
@@ -103,6 +103,7 @@ public final class ControllerService {
 
 //	Look for a way to check the money for no more than 2 decimal places if we have time.
 	public void depositMoney(User user, Scanner scanner) {
+//		Code to deposit money here
 		double depositAmount = 0;
 		if (user.isLoginStatus()) {
 			viewBalance(user);
@@ -117,11 +118,10 @@ public final class ControllerService {
 				user.setBalance((user.getBalance() + depositAmount));
 				LOGGER.trace("Getting connection with user parameters: " + user.getUsername() + ", " + user.getPassword());
 				try (Connection connection = ConnectionUtil.getConnection(user.getUsername(), user.getPassword())) {
-					// * could be "AS [DESIRED_NAME]
 					String sql = "UPDATE bank_account SET BALANCE = ?";
 
 					PreparedStatement statement = connection.prepareStatement(sql);
-					LOGGER.info("REMOVE BEFORE FINALIZATION! Amount to be updated to: " + user.getBalance());
+					LOGGER.info("Amount to be updated to: " + user.getBalance());
 					statement.setDouble(1, user.getBalance());
 					statement.executeUpdate();
 
@@ -150,7 +150,7 @@ public final class ControllerService {
 
 //	Look for a way to check the money for no more than 2 decimal places if we have time.
 	public void withdrawMoney(User user, Scanner scanner) {
-		
+//		Code to withdraw money here
 		double withdrawAmount = 0;
 		if (user.isLoginStatus()) {
 			viewBalance(user);
@@ -165,11 +165,10 @@ public final class ControllerService {
 				user.setBalance((user.getBalance() - withdrawAmount));
 				LOGGER.trace("Getting connection with user parameters: " + user.getUsername() + ", " + user.getPassword());
 				try (Connection connection = ConnectionUtil.getConnection(user.getUsername(), user.getPassword())) {
-					// * could be "AS [DESIRED_NAME]
 					String sql = "UPDATE bank_account SET BALANCE = ?";
 
 					PreparedStatement statement = connection.prepareStatement(sql);
-					LOGGER.info("REMOVE BEFORE FINALIZATION! Amount to be updated to: " + user.getBalance());
+					LOGGER.info("Amount to be updated to: " + user.getBalance());
 					statement.setDouble(1, user.getBalance());
 					statement.executeUpdate();
 
@@ -218,19 +217,14 @@ public final class ControllerService {
 			if (password.equals(passwordCheck)) {
 				LOGGER.trace("Getting connection with admin parameters");
 				try (Connection connection = ConnectionUtil.getConnection()) {
-					// * could be "AS [DESIRED_NAME]
-					
 					String sql = "CREATE USER " + username + " IDENTIFIED BY " + password;
 					PreparedStatement statement = connection.prepareStatement(sql);
 					LOGGER.info("Creating user account with parameters: " + username + ", " + password);
-//					statement.setString(1, username);
-//					statement.setString(2, password);
 					statement.executeUpdate();
 //					Granting admin options
 					String sql2 = "GRANT DBA TO " + username + " WITH ADMIN OPTION";
 					PreparedStatement statement2 = connection.prepareStatement(sql2);
 					LOGGER.info("Granting admin options to created account (for purpose of testing)");
-//					statement2.setString(1, username);
 					statement2.executeUpdate();
 
 				} catch (SQLException e) {
