@@ -11,27 +11,27 @@ import org.apache.log4j.Logger;
 
 import com.revature.exception.BalanceTooSmallException;
 import com.revature.exception.WrongUsernameOrPasswordException;
-import com.revature.model.User;
+import com.revature.model.Employee;
 import com.revature.util.ConnectionUtil;
 
-public final class ControllerService {
+public final class Service {
 
-	private static final Logger LOGGER = Logger.getLogger(ControllerService.class);
+	private static final Logger LOGGER = Logger.getLogger(Service.class);
 
-	private static ControllerService instance;
+	private static Service instance;
 
-	private ControllerService() {
-		LOGGER.trace("Instantiation of ControllerService has been restricted.");
+	private Service() {
+		LOGGER.trace("Instantiation of Service class has been restricted.");
 	}
 
-	public static ControllerService getInstance() {
+	public static Service getInstance() {
 		if (instance == null) {
-			instance = new ControllerService();
+			instance = new Service();
 		}
 		return instance;
 	}
 
-	public void login(User user, Scanner scanner) {
+	public void login(Employee user, Scanner scanner) {
 //		Check if user is already logged in
 		if (user.isLoginStatus()) {
 			System.out.println(
@@ -67,7 +67,7 @@ public final class ControllerService {
 		}
 	}
 
-	public void logout(User user) {
+	public void logout(Employee user) {
 //		Code to log out here
 		if (user.isLoginStatus()) {
 			user.setLoginStatus(false);
@@ -77,7 +77,7 @@ public final class ControllerService {
 		}
 	}
 
-	public void viewBalance(User user) {
+	public void viewBalance(Employee user) {
 //		Code to print out the balance here
 		if (user.isLoginStatus()) {
 			LOGGER.trace("Getting connection with user parameters: " + user.getUsername() + ", " + user.getPassword());
@@ -102,7 +102,7 @@ public final class ControllerService {
 	}
 
 //	Look for a way to check the money for no more than 2 decimal places if we have time.
-	public void depositMoney(User user, Scanner scanner) {
+	public void depositMoney(Employee user, Scanner scanner) {
 //		Code to deposit money here
 		double depositAmount = 0;
 		if (user.isLoginStatus()) {
@@ -149,7 +149,7 @@ public final class ControllerService {
 	}
 
 //	Look for a way to check the money for no more than 2 decimal places if we have time.
-	public void withdrawMoney(User user, Scanner scanner) {
+	public void withdrawMoney(Employee user, Scanner scanner) {
 //		Code to withdraw money here
 		double withdrawAmount = 0;
 		if (user.isLoginStatus()) {

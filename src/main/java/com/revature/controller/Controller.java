@@ -2,8 +2,8 @@ package com.revature.controller;
 
 import java.util.Scanner;
 
-import com.revature.model.User;
-import com.revature.service.ControllerService;
+import com.revature.model.Employee;
+import com.revature.service.Service;
 
 public class Controller {
 	
@@ -11,7 +11,7 @@ public class Controller {
 	
 	public Controller() {
 		
-		User user = new User();
+		Employee user = new Employee();
 //		Scanner for username and password (and everything)
 		Scanner scanner = new Scanner(System.in);
 
@@ -32,7 +32,7 @@ public class Controller {
 			}
 			
 			String normalizedUserAction = userAction.toLowerCase();
-			ControllerService service = ControllerService.getInstance();
+			Service service = Service.getInstance();
 			
 			switch(normalizedUserAction) {
 			case "login":

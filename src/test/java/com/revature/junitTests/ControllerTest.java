@@ -10,15 +10,15 @@ import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
 
-import com.revature.model.User;
-import com.revature.service.ControllerService;
+import com.revature.model.Employee;
+import com.revature.service.Service;
 import com.revature.util.ConnectionUtil;
 
 public class ControllerTest {
 
-	private static final ControllerService controllerService = ControllerService.getInstance();
+	private static final Service controllerService = Service.getInstance();
 
-	User user = new User();
+	Employee user = new Employee();
 
 	Scanner scanner = new Scanner(System.in);
 
